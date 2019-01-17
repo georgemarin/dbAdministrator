@@ -2,6 +2,7 @@ package utm.db.dbadministrator.frames;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import utm.db.dbadministrator.BeanProvider;
 import utm.db.dbadministrator.services.CreditsService;
 import utm.db.dbadministrator.services.GradesService;
 import utm.db.dbadministrator.services.StudentService;
@@ -32,7 +33,7 @@ public class Desktop extends JFrame {
     private ManageGradesFrame manageGradesFrame = new ManageGradesFrame();
 
     public Desktop() {
-
+        BeanProvider.autowire(this);
         setTitle("desktop.title");
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds(0, 0, screenSize.width, screenSize.height);

@@ -2,6 +2,7 @@ package utm.db.dbadministrator.frames;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import utm.db.dbadministrator.BeanProvider;
 import utm.db.dbadministrator.entities.Credits;
 import utm.db.dbadministrator.entities.Grades;
 import utm.db.dbadministrator.entities.Student;
@@ -27,6 +28,7 @@ class CreateTablesFrame extends JInternalFrame {
     private GradesService gradesService;
 
     CreateTablesFrame() {
+        BeanProvider.autowire(this);
         setTitle("createTableFrame.title");
         setLocation(new Random().nextInt(120) + 10, new Random().nextInt(120) + 10);
         setSize(550, 350);

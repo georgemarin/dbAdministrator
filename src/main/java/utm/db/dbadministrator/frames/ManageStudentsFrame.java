@@ -2,6 +2,7 @@ package utm.db.dbadministrator.frames;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import utm.db.dbadministrator.BeanProvider;
 import utm.db.dbadministrator.services.StudentService;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class ManageStudentsFrame extends JInternalFrame {
     private StudentService studentService;
 
     ManageStudentsFrame() {
+        BeanProvider.autowire(this);
         setTitle(("manageStudentsFrame.title"));
         setLocation(new Random().nextInt(100), new Random().nextInt(100));
         setSize(550, 350);

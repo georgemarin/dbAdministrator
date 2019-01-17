@@ -2,6 +2,7 @@ package utm.db.dbadministrator.frames;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import utm.db.dbadministrator.BeanProvider;
 import utm.db.dbadministrator.repositories.GradesRepository;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class ManageGradesFrame extends JInternalFrame {
     JTable jTable1;
 
     ManageGradesFrame() {
+        BeanProvider.autowire(this);
         setTitle(("manageGradesFrame.title"));
         setLocation(new Random().nextInt(100), new Random().nextInt(100));
         setSize(550, 350);

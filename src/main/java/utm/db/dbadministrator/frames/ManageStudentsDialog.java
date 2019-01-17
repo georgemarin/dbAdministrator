@@ -2,6 +2,7 @@ package utm.db.dbadministrator.frames;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import utm.db.dbadministrator.BeanProvider;
 import utm.db.dbadministrator.entities.Student;
 import utm.db.dbadministrator.repositories.StudentRepository;
 
@@ -28,7 +29,7 @@ class ManageStudentsDialog extends JDialog {
 
     ManageStudentsDialog(Frame owner, String title, boolean modal, boolean isNew, Student studentToEdit) {
         super(owner, title, modal);
-
+        BeanProvider.autowire(this);
         this.isNew = isNew;
         this.studentToEdit = studentToEdit;
 

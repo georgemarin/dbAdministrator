@@ -2,6 +2,7 @@ package utm.db.dbadministrator.frames;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import utm.db.dbadministrator.BeanProvider;
 import utm.db.dbadministrator.services.CreditsService;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class ManageCreditsFrame extends JInternalFrame {
     private CreditsService creditsService;
 
     ManageCreditsFrame() {
+        BeanProvider.autowire(this);
         setTitle(("manageCreditsFrame.title"));
         setLocation(new Random().nextInt(100), new Random().nextInt(100));
         setSize(550, 350);

@@ -3,6 +3,7 @@ package utm.db.dbadministrator.frames;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import utm.db.dbadministrator.BeanProvider;
 import utm.db.dbadministrator.services.CreditsService;
 import utm.db.dbadministrator.services.GradesService;
 import utm.db.dbadministrator.services.StudentService;
@@ -25,7 +26,7 @@ class DropTablesFrame extends JInternalFrame {
 
 
     DropTablesFrame() {
-
+        BeanProvider.autowire(this);
         setTitle("dropTableFrame");
         setLocation(new Random().nextInt(120) + 10, new Random().nextInt(120) + 10);
         setSize(550, 400);

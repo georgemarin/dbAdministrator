@@ -2,6 +2,7 @@ package utm.db.dbadministrator.frames;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import utm.db.dbadministrator.BeanProvider;
 import utm.db.dbadministrator.repositories.CreditsRepository;
 import utm.db.dbadministrator.repositories.GradesRepository;
 import utm.db.dbadministrator.repositories.StudentRepository;
@@ -23,6 +24,7 @@ class TruncateTablesFrame extends JInternalFrame {
     private StudentRepository studentRepository;
 
     TruncateTablesFrame() {
+        BeanProvider.autowire(this);
         setTitle(("truncateTableFrame.title"));
         setLocation(new Random().nextInt(120) + 10, new Random().nextInt(120) + 10);
         setSize(550, 350);

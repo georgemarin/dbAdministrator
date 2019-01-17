@@ -2,6 +2,7 @@ package utm.db.dbadministrator.frames;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import utm.db.dbadministrator.BeanProvider;
 import utm.db.dbadministrator.entities.Grades;
 import utm.db.dbadministrator.services.GradesService;
 
@@ -25,7 +26,7 @@ class ManageGradesDialog extends JDialog {
 
     ManageGradesDialog(Frame owner, String title, boolean modal, boolean isNew, Grades grades) {
         super(owner, title, modal);
-
+        BeanProvider.autowire(this);
         this.isNew = isNew;
         this.grades = grades;
         setLocation(new Random().nextInt(150), new Random().nextInt(150));

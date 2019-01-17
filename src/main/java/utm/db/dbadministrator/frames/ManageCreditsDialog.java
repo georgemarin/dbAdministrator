@@ -2,6 +2,7 @@ package utm.db.dbadministrator.frames;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import utm.db.dbadministrator.BeanProvider;
 import utm.db.dbadministrator.entities.Credits;
 import utm.db.dbadministrator.services.CreditsService;
 
@@ -25,7 +26,7 @@ class ManageCreditsDialog extends JDialog {
 
     ManageCreditsDialog(Frame owner, String title, boolean modal, boolean isNew, Credits creditToEdit) {
         super(owner, title, modal);
-
+        BeanProvider.autowire(this);
         this.isNew = isNew;
         this.creditToEdit = creditToEdit;
 
