@@ -14,7 +14,7 @@ class MenuBar extends JMenuBar {
     JMenuItem jMenuItemManageGrades = new JMenuItem(("Grades"));
     JMenuItem jMenuItemQuit = new JMenuItem(("Quit"));
 
-    JMenuItem jMenuItemFrameAbout = new JMenuItem(("FrameAbout"));
+    JMenuItem jMenuItemFrameAbout = new JMenuItem(("AboutWindow"));
 
     MenuBar() {
 

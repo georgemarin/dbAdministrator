@@ -15,8 +15,10 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.Random;
 
+import static java.awt.FlowLayout.*;
+
 @Configurable
-class CreateTablesFrame extends JInternalFrame {
+class CreateTablesWindow extends JInternalFrame {
 
     @Autowired
     private StudentService studentService;
@@ -27,9 +29,9 @@ class CreateTablesFrame extends JInternalFrame {
     @Autowired
     private GradesService gradesService;
 
-    CreateTablesFrame() {
+    CreateTablesWindow() {
         BeanProvider.autowire(this);
-        setTitle("createTableFrame.title");
+        setTitle("createTableWindow");
         setLocation(new Random().nextInt(120) + 10, new Random().nextInt(120) + 10);
         setSize(550, 350);
 
@@ -39,19 +41,19 @@ class CreateTablesFrame extends JInternalFrame {
         setResizable(false);
         setDefaultCloseOperation(HIDE_ON_CLOSE);
 
-        getContentPane().setLayout(new FlowLayout(FlowLayout.LEFT));
-        JButton jCreateStudentsTableButton = new JButton("createTableFrame.createStudentsTableButton");
+        getContentPane().setLayout(new FlowLayout(LEFT));
+        JButton jCreateStudentsTableButton = new JButton("createStudentsTable");
         getContentPane().add(jCreateStudentsTableButton);
-        JButton jCreateCreditsTableButton = new JButton("createCreditsTableButton");
+        JButton jCreateCreditsTableButton = new JButton("createCreditsTable");
         getContentPane().add(jCreateCreditsTableButton);
-        JButton jCreateGradesTableButton = new JButton("createGradesTableButton");
+        JButton jCreateGradesTableButton = new JButton("createGradesTable");
         getContentPane().add(jCreateGradesTableButton);
 
-        JButton jPopulateStudentsTableButton = new JButton("populateStudentsTableButton");
+        JButton jPopulateStudentsTableButton = new JButton("populateStudentsTable");
         getContentPane().add(jPopulateStudentsTableButton);
-        JButton jPopulateCreditsTableButton = new JButton("populateCreditsTableButton");
+        JButton jPopulateCreditsTableButton = new JButton("populateCreditsTable");
         getContentPane().add(jPopulateCreditsTableButton);
-        JButton jPopulateGradesTableButton = new JButton("populateGradesTableButton");
+        JButton jPopulateGradesTableButton = new JButton("populateGradesTable");
         getContentPane().add(jPopulateGradesTableButton);
 
         jPopulateStudentsTableButton.addActionListener(e -> this.populateStudentsTable());

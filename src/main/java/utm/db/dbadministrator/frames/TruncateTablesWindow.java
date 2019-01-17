@@ -12,7 +12,7 @@ import java.awt.*;
 import java.util.Random;
 
 @Configurable
-class TruncateTablesFrame extends JInternalFrame {
+class TruncateTablesWindow extends JInternalFrame {
 
     @Autowired
     private GradesRepository gradesRepository;
@@ -23,9 +23,9 @@ class TruncateTablesFrame extends JInternalFrame {
     @Autowired
     private StudentRepository studentRepository;
 
-    TruncateTablesFrame() {
+    TruncateTablesWindow() {
         BeanProvider.autowire(this);
-        setTitle(("truncateTableFrame.title"));
+        setTitle(("Truncate Tables"));
         setLocation(new Random().nextInt(120) + 10, new Random().nextInt(120) + 10);
         setSize(550, 350);
 

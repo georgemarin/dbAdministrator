@@ -24,32 +24,32 @@ public class Desktop extends JFrame {
     @Autowired
     private CreditsService creditsService;
 
-    private FrameAbout frameAbout = new FrameAbout();
-    private CreateTablesFrame createTablesFrame = new CreateTablesFrame();
-    private TruncateTablesFrame truncateTablesFrame = new TruncateTablesFrame();
-    private DropTablesFrame dropTablesFrame = new DropTablesFrame();
-    private ManageStudentsFrame manageStudentsFrame = new ManageStudentsFrame();
-    private ManageCreditsFrame manageCreditsFrame = new ManageCreditsFrame();
-    private ManageGradesFrame manageGradesFrame = new ManageGradesFrame();
+    private AboutWindow aboutWindow = new AboutWindow();
+    private CreateTablesWindow createTablesWindow = new CreateTablesWindow();
+    private TruncateTablesWindow truncateTablesWindow = new TruncateTablesWindow();
+    private DropTablesWindow dropTablesWindow = new DropTablesWindow();
+    private ManageStudentsWindow manageStudentsWindow = new ManageStudentsWindow();
+    private ManageCreditsWindow manageCreditsWindow = new ManageCreditsWindow();
+    private ManageGradesWindow manageGradesWindow = new ManageGradesWindow();
 
     public Desktop() {
         BeanProvider.autowire(this);
-        setTitle("desktop.title");
+        setTitle("Database Administrator App");
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds(0, 0, screenSize.width, screenSize.height);
 
         JDesktopPane jDesktopPane = new JDesktopPane();
         getContentPane().add(jDesktopPane, BorderLayout.CENTER);
-        JLabel jLabelFooterState = new JLabel("desktop.jLabelFooterState");
+        JLabel jLabelFooterState = new JLabel("Footer");
         getContentPane().add(jLabelFooterState, BorderLayout.SOUTH);
 
-        jDesktopPane.add(frameAbout);
-        jDesktopPane.add(createTablesFrame);
-        jDesktopPane.add(truncateTablesFrame);
-        jDesktopPane.add(dropTablesFrame);
-        jDesktopPane.add(manageStudentsFrame);
-        jDesktopPane.add(manageCreditsFrame);
-        jDesktopPane.add(manageGradesFrame);
+        jDesktopPane.add(aboutWindow);
+        jDesktopPane.add(createTablesWindow);
+        jDesktopPane.add(truncateTablesWindow);
+        jDesktopPane.add(dropTablesWindow);
+        jDesktopPane.add(manageStudentsWindow);
+        jDesktopPane.add(manageCreditsWindow);
+        jDesktopPane.add(manageGradesWindow);
         MenuBar menuBar = new MenuBar();
         setJMenuBar(menuBar);
 
@@ -59,10 +59,10 @@ public class Desktop extends JFrame {
             }
         });
 
-        menuBar.jMenuItemFrameAbout.addActionListener(ev -> frameAbout.setVisible(true));
-        menuBar.jMenuItemCreateTables.addActionListener(ev -> createTablesFrame.setVisible(true));
-        menuBar.jMenuItemTruncateTables.addActionListener(ev -> truncateTablesFrame.setVisible(true));
-        menuBar.jMenuItemDropTables.addActionListener(ev -> dropTablesFrame.setVisible(true));
+        menuBar.jMenuItemFrameAbout.addActionListener(ev -> aboutWindow.setVisible(true));
+        menuBar.jMenuItemCreateTables.addActionListener(ev -> createTablesWindow.setVisible(true));
+        menuBar.jMenuItemTruncateTables.addActionListener(ev -> truncateTablesWindow.setVisible(true));
+        menuBar.jMenuItemDropTables.addActionListener(ev -> dropTablesWindow.setVisible(true));
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent ev) {
@@ -73,18 +73,18 @@ public class Desktop extends JFrame {
         });
 
         menuBar.jMenuItemManageStudents.addActionListener(ev -> {
-            manageStudentsFrame.jTable1.setModel(manageStudentsFrame.getData());
-            manageStudentsFrame.setVisible(true);
+            manageStudentsWindow.jTable1.setModel(manageStudentsWindow.getData());
+            manageStudentsWindow.setVisible(true);
         });
 
         menuBar.jMenuItemManageCredits.addActionListener(ev -> {
-            manageCreditsFrame.jTable1.setModel(manageCreditsFrame.getData());
-            manageCreditsFrame.setVisible(true);
+            manageCreditsWindow.jTable1.setModel(manageCreditsWindow.getData());
+            manageCreditsWindow.setVisible(true);
         });
 
         menuBar.jMenuItemManageGrades.addActionListener(ev -> {
-            manageGradesFrame.jTable1.setModel(manageGradesFrame.getData());
-            manageGradesFrame.setVisible(true);
+            manageGradesWindow.jTable1.setModel(manageGradesWindow.getData());
+            manageGradesWindow.setVisible(true);
         });
 
         setVisible(true);
@@ -99,7 +99,7 @@ public class Desktop extends JFrame {
     }
 
     private boolean confirmBeforeExit() {
-        return JOptionPane.showConfirmDialog(this, "desktop.confirmbeforeexitdialog.text",
-                "desktop.confirmbeforeexitdialog.title", JOptionPane.YES_NO_OPTION) == 0;
+        return JOptionPane.showConfirmDialog(this, "Confirm exit",
+                "Confirm Exit", JOptionPane.YES_NO_OPTION) == 0;
     }
 }

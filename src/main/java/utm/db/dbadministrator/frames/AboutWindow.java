@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
-class FrameAbout extends JInternalFrame {
+class AboutWindow extends JInternalFrame {
 
-    FrameAbout() {
+    AboutWindow() {
         setTitle("About");
         setLocation(new Random().nextInt(140) + 50, new Random().nextInt(150) + 50);
         setSize(320, 400);
@@ -18,7 +18,7 @@ class FrameAbout extends JInternalFrame {
         setDefaultCloseOperation(HIDE_ON_CLOSE);
 
         JTextArea jTextArea1 = new JTextArea(11, 21);
-        jTextArea1.setText("textArea");
+        jTextArea1.setText("Aplicatia a fost dezvoltata de George Marin pentru poriectul la Proiectarea Interfetelor Grafice. An III ID, Universitatea Titu Maiorescu");
         jTextArea1.setEditable(false);
         jTextArea1.setEnabled(false);
 

@@ -3,24 +3,26 @@ package utm.db.dbadministrator.frames;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import utm.db.dbadministrator.BeanProvider;
-import utm.db.dbadministrator.repositories.GradesRepository;
+import utm.db.dbadministrator.services.CreditsService;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.util.Random;
 
-@Configurable
-public class ManageGradesFrame extends JInternalFrame {
+import static java.awt.BorderLayout.CENTER;
+import static java.awt.BorderLayout.NORTH;
 
-    @Autowired
-    private GradesRepository gradesRepository;
+@Configurable
+public class ManageCreditsWindow extends JInternalFrame {
 
     JTable jTable1;
 
-    ManageGradesFrame() {
+    @Autowired
+    private CreditsService creditsService;
+
+    ManageCreditsWindow() {
         BeanProvider.autowire(this);
-        setTitle(("manageGradesFrame.title"));
+        setTitle(("Manage Credits"));
         setLocation(new Random().nextInt(100), new Random().nextInt(100));
         setSize(550, 350);
         setVisible(false);
@@ -29,7 +31,7 @@ public class ManageGradesFrame extends JInternalFrame {
         setDefaultCloseOperation(HIDE_ON_CLOSE);
 
         JPanel jPanelHeader = new JPanel();
-        jPanelHeader.setBorder(BorderFactory.createTitledBorder(("Header")));
+        jPanelHeader.setBorder(BorderFactory.createTitledBorder("Header"));
 
         JButton jButtonDelete = new JButton("Delete");
         jPanelHeader.add(jButtonDelete);
@@ -42,51 +44,53 @@ public class ManageGradesFrame extends JInternalFrame {
         JButton jButtonEdit = new JButton("Edit");
         jPanelHeader.add(jButtonEdit);
         jButtonEdit.addActionListener(ev -> jButtonEditActionPerformed());
-        getContentPane().add(jPanelHeader, BorderLayout.NORTH);
+
+        getContentPane().add(jPanelHeader, NORTH);
 
         jTable1 = new JTable(this.getData());
         jTable1.setAutoCreateRowSorter(true);
         jTable1.setDefaultEditor(Object.class, null);
 
-        getContentPane().add(new JScrollPane(jTable1), BorderLayout.CENTER);
+        getContentPane().add(new JScrollPane(jTable1), CENTER);
     }
 
     public DefaultTableModel getData() {
-        String[] columns = new String[] {"id", "name", "code", "studentId", "grade"};
+        String[] columns = new String[]{"id", "name", "nr", "code"};
 
         DefaultTableModel model = new DefaultTableModel(columns, 0);
-        gradesRepository.findAll().forEach(grades -> model.addRow(new Object[]{
-                grades.getId(),
-                grades.getCreditName(),
-                grades.getCreditCode(),
-                grades.getStudentId(),
-                grades.getGrade()
+
+        creditsService.getCreditsRepository().findAll().forEach(credits -> model.addRow(new Object[]{
+                credits.getId(),
+                credits.getCreditName(),
+                credits.getCreditNumber(),
+                credits.getGetCreditCode()
         }));
         return model;
     }
 
     private void jButtonDeleteActionPerformed() {
-
         if (jTable1.getSelectedRowCount() > 0) {
             int[] selectedRows = jTable1.getSelectedRows();
             for (int selectedRow : selectedRows) {
-                gradesRepository.deleteById((long) jTable1.getValueAt(selectedRow, 0));
+                creditsService.getCreditsRepository().deleteById((long) jTable1.getValueAt(selectedRow, 0));
             }
+
             jTable1.setModel(this.getData());
         }
     }
 
     private void jButtonAddActionPerformed() {
-        new ManageGradesDialog(null, ("addTitle"), true, true, null);
+        new ManageCreditsDialog(null, ("addTitle"), true, true, null);
         jTable1.setModel(this.getData());
     }
 
     private void jButtonEditActionPerformed() {
         if (jTable1.getSelectedRowCount() > 0) {
-            long grade_id = (long) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-            new ManageGradesDialog(null, ("editTitle"), true, false, gradesRepository.findById(grade_id).get());
+            long credit_id = (long) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+            new ManageCreditsDialog(null, ("editTitle"), true, false, creditsService.getCreditsRepository().findById(credit_id).get());
             jTable1.setModel(this.getData());
         }
     }
 
 }
+

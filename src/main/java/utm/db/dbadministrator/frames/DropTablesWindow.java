@@ -13,7 +13,7 @@ import java.awt.*;
 import java.util.Random;
 
 @Configurable
-class DropTablesFrame extends JInternalFrame {
+class DropTablesWindow extends JInternalFrame {
 
     @Autowired
     private StudentService studentService;
@@ -25,9 +25,9 @@ class DropTablesFrame extends JInternalFrame {
     private CreditsService creditsService;
 
 
-    DropTablesFrame() {
+    DropTablesWindow() {
         BeanProvider.autowire(this);
-        setTitle("dropTableFrame");
+        setTitle("dropTables");
         setLocation(new Random().nextInt(120) + 10, new Random().nextInt(120) + 10);
         setSize(550, 400);
 

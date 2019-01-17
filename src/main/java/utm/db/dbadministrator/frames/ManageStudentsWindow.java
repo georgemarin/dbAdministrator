@@ -11,16 +11,16 @@ import java.awt.*;
 import java.util.Random;
 
 @Configurable
-public class ManageStudentsFrame extends JInternalFrame {
+public class ManageStudentsWindow extends JInternalFrame {
 
     JTable jTable1;
 
     @Autowired
     private StudentService studentService;
 
-    ManageStudentsFrame() {
+    ManageStudentsWindow() {
         BeanProvider.autowire(this);
-        setTitle(("manageStudentsFrame.title"));
+        setTitle(("Manage Students"));
         setLocation(new Random().nextInt(100), new Random().nextInt(100));
         setSize(550, 350);
         setVisible(false);
@@ -29,17 +29,17 @@ public class ManageStudentsFrame extends JInternalFrame {
         setDefaultCloseOperation(HIDE_ON_CLOSE);
 
         JPanel jPanelHeader = new JPanel();
-        jPanelHeader.setBorder(BorderFactory.createTitledBorder(("jPanelHeader")));
+        jPanelHeader.setBorder(BorderFactory.createTitledBorder(("Header")));
 
-        JButton jButtonDelete = new JButton(("jButtonDelete"));
+        JButton jButtonDelete = new JButton(("Delete"));
         jPanelHeader.add(jButtonDelete);
         jButtonDelete.addActionListener(ev -> jButtonDeleteActionPerformed());
 
-        JButton jButtonAdd = new JButton(("jButtonAdd"));
+        JButton jButtonAdd = new JButton(("Add"));
         jPanelHeader.add(jButtonAdd);
         jButtonAdd.addActionListener(ev -> jButtonAddActionPerformed());
 
-        JButton jButtonEdit = new JButton(("jButtonEdit"));
+        JButton jButtonEdit = new JButton(("Edit"));
         jPanelHeader.add(jButtonEdit);
         jButtonEdit.addActionListener(ev -> jButtonEditActionPerformed());
 
